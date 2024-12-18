@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}Register{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Для чего Вам нужна регистрация?</h1>
+        <p>При создании личной учетной записи у Вас появится возможность удобно прямо на сайте записаться на желаемую услугу. Для этого зарегистрируетесь, выберите во вкладке "запись на прием" нужную процедуру, дату и время.</p>
+        <p>Наши сотрудники свяжутся с Вами в ближайшее время для подтверждения записи!</p>
+    <h1>Регистрация</h1>
+    {% if error %}
+        <p style="color:red">{{ error }}</p>
+    {% elif message %}
+        <p style="color:green">{{ message }}</p>
+    {% endif %}
+    <form method="post">
+        {% csrf_token %}
+        <label for="username">Введите логин:</label>
+        <input type="text" id="username" name="username" maxlength="30" required><br><br>
+
+        <label for="password">Введите пароль:</label>
+        <input type="password" id="password" name="password" minlength="8" required><br><br>
+
+        <label for="repeat_password">Повторите пароль:</label>
+        <input type="password" id="repeat_password" name="repeat_password" minlength="8" required><br><br>
+
+        <label for="age">Введите свой возраст:</label>
+        <input type="number" id="age" name="age" maxlength="3" required><br><br>
+
+        <label for="age">Введите свой номер:</label>
+        <input type="number" id="number" name="number" maxlength="11" required><br><br>
+
+        <button type="submit">Зарегистрироваться</button>
+    </form>
+    </div>
+{% endblock %}

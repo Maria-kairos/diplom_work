@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Медицинский центр{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+          integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+            background-color: #f8f9fa;
+
+        }
+
+        .header {
+            background-color: #6b8994;
+            color: white;
+            padding: 15px 0;
+        }
+
+        .header-med {
+            background-color: #6b8994;
+            color: #343a40;
+            padding: 15px 0;
+        }
+
+        .navbar {
+            background-color: #e9ecef;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .navbar-nav .nav-link {
+            color: #333;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #D3E2F1;
+        }
+
+        .content-image {
+            padding: 200px;
+            flex: 1;
+            background-image: url('/static/images/doctor2.webp');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .content-container {
+            padding: 20px;
+            flex: 1;
+        }
+
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            width: 100%;
+            position: relative;
+        }
+
+        .btn-primary {
+            background-color: #343a40;
+            border-color: #007bff;
+        }
+        .btn-primary:hover{
+             background-color: #007bff;
+             border-color: #0056b3;
+        }
+        .btn-secondary {
+            background-color: #6c757d;
+            border-color: #6c757d;
+        }
+        .btn-secondary:hover{
+             background-color: #545b62;
+             border-color: #545b62;
+        }
+        .cat-icon {
+            width: 100px;
+            height: auto;
+        }
+        .inline-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-right: 5px;
+        }
+
+        .main-content {
+            display: flex;
+            min-height: 70vh;
+            padding: 20px;
+            position: relative;
+            align-items: center;
+            overflow: hidden;
+        }
+        .main-content::before,
+        .main-content::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+             bottom: 0;
+            width: 17%;
+             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: -1;
+        }
+         .main-content::before {
+            background-image: url('{% static "images/left.jpg" %}');
+            }
+        .main-content::after {
+             background-image: url('{% static "images/left.jpg" %}');
+            left: auto;
+            right: 0;
+        }
+        .text-content {
+            flex: 1;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            background-color: rgba(255, 255, 255, 0.8);
+        }
+
+        @media screen and (max-width: 768px) {
+           .main-content {
+               flex-direction: column;
+               align-items: start;
+           }
+           .main-content::before, .main-content::after {
+                width: 100%;
+                top: 0;
+                bottom: auto;
+                min-height: 30vh;
+                position: absolute;
+           }
+           .main-content::after {
+                top: auto;
+                bottom: 0;
+           }
+
+        .doctors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+           margin: 20px;
+
+        }
+
+        .doctor-card {
+            width: 250px;
+            background-color: #f9f9f9;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .doctor-card .img-container{
+            width: 25px;
+            height: 30px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .doctor-card .img-container img{
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .doctor-info {
+           padding: 15px;
+           text-align: left;
+           display: flex;
+           flex-direction: column;
+        }
+          .doctor-info > * {
+           margin-bottom: 5px;
+        }
+
+
+        .doctor-name {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .doctor-specialty {
+            font-size: 0.9em;
+            color: #555;
+            margin-bottom: 5px;
+             line-height: 1.2;
+        }
+
+        .doctor-experience {
+            font-size: 0.85em;
+            color: #888;
+          align-self: flex-end;
+           margin-top: auto;
+        }
+        @media screen and (max-width: 768px) {
+            .doctor-card {
+            width: 100%;
+            }
+        }
+
+    </style>
+</head>
+<body>
+<header class="header-med">
+    <div class="container">
+        <h1 class="text-center"> <img class="inline-icon" src="{% static 'images/heart.png' %}"> Med~Cat </h1>
+    </div>
+</header>
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="{% url 'index' %}">Главная</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">Услуги</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'doctors' %}">Врачи</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'contacts' %}">Контакты</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'register' %}">Регистрация</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'zapis' %}">Запись на прием</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="main-content">
+    <div class="container content-container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</div>
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2024 Медицинский центр. Только аккредитованные специалисты.</p>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

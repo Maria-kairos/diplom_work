@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Doctors{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Наши врачи</h1>
+        <p>Предлагаем Вам ознакомиться со специалистами нашего центра:</p>
+    </div>
+    <div class="doctors-grid">
+        <div class="doctor-card">
+            <div class="img-container">
+                <img src="{% static 'images/result_doctor4.jpg' %}">
+            </div>
+            <div class="doctor-info">
+                <div class="doctor-name">Мурлык Олег</div>
+                <div class="doctor-specialty">Главврач, врач кoто-релаксации</div>
+                <div class="doctor-experience">стаж 5 лет</div>
+            </div>
+        </div>
+          <div class="doctor-card">
+                <div class="img-container">
+                    <img src="{% static 'images/result_doctor5.jpg' %}">
+                </div>
+                <div class="doctor-info">
+                    <div class="doctor-name">Моррис Беляш</div>
+                    <div class="doctor-specialty">Кандидат наук по когтеукалыванию</div>
+                    <div class="doctor-experience">стаж 7 лет</div>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <div class="img-container">
+                <img src="{% static 'images/result_doctor3.jpg' %}">
+            </div>
+                <div class="doctor-info">
+                    <div class="doctor-name">Пуфа Мяковна</div>
+                    <div class="doctor-specialty">Врач кото-релаксации</div>
+                    <div class="doctor-experience">стаж 2 года</div>
+            </div>
+        </div>
+
+        <div class="doctor-card">
+            <div class="img-container">
+                <img src="{% static 'images/result_cat55.jpg' %}">
+            </div>
+            <div class="doctor-info">
+                <div class="doctor-name">Барсик Альфредович</div>
+                 <div class="doctor-specialty">Врач общей практики</div>
+                 <div class="doctor-experience">стаж 5 лет</div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %}Contacts{% endblock %}
+{% block content %}
+    <div class="container">
+        <h1>Выберите услугу и время онлайн</h1>
+        <h5>Перед выбором услуги просим зарегистрироваться. В ближайшее время с Вами свяжется наш колл-центр. Записаться на прием также можно позвонив на горячую линию.</h5>
+    {% if user.is_authenticated %}
+    <h1>Запись на прием</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="service">Выберите услугу:</label>
+            <select name="service" id="service" required>
+                <option value="" disabled selected>Выберите услугу</option>
+                {% for service in services %}
+                    <option value="{{ service.id }}">{{ service.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="appointment_time">Выберите время:</label>
+           <input type="datetime-local" name="appointment_time" id="appointment_time" required>
+        </div>
+
+        <button type="submit">Записаться</button>
+        {% if error %}
+        <p style="color:red">{{error}}</p>
+        {% endif %}
+
+        {% if success %}
+        <p style="color:green">{{success}}</p>
+        {% endif %}
+    </form>
+  {% else %}
+      <p>Для записи на прием необходимо <a href="{% url 'register' %}">авторизоваться</a></p>
+  {% endif %}
+
+    </div>
+{% endblock %}
